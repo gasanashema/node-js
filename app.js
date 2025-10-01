@@ -8,17 +8,14 @@ app.set('view engine','ejs')
 app.listen(3000);
 
 app.get('/', (req, res) => {
-    // res.send('<h1>Hello express</h1>');
     res.render('index');
 })
 app.get('/about', (req, res) => {
-    // res.send('<h1>Hello express</h1>');
     res.render('about');
 })
 
-app.get('/about-us', (req, res) => {
-    // res.send('<h1>Hello express</h1>');
-    res.redirect('/about');
+app.get('/blog/create', (req, res) => {
+    res.render('create');
 })
 
 app.use((req, res) => {
