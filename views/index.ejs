@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%=title%></title>
 </head>
 <body>
-    <h1>Path to become a ninja</h1>
-        <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/blog/create">New Blog</a>
-    </nav>
+       <%- include('./partials/nav.ejs')%>
+ 
+<div class="">
+    <h2>All Blogs</h2>
+    <% if (blogs.length>0) { 
+        blogs.forEach(blog=>{
+            %>
+            <h2><%=blog.title%></h2>
+            <p><%=blog.snippet%></p>
+            <%
+        })
+    }else{ 
+        
+        %>
+        <h2>No Articles</h2>
+        <%
+    }
+        %>
+    
+</div>
 
 </body>
 </html>
