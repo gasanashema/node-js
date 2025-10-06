@@ -7,20 +7,31 @@ app.set('view engine','ejs')
 // listen to requests
 app.listen(3000);
 
-app.get('/', (req, res) => {
-    // res.send('<h1>Hello express</h1>');
-    res.render('index');
-})
-app.get('/about', (req, res) => {
-    // res.send('<h1>Hello express</h1>');
-    res.render('about');
+app.use((req,res,next)=>{
+    console.log(req.url);
+    console.log(req.method);
+    console.log(req.host);
+    next();
 })
 
-app.get('/about-us', (req, res) => {
-    // res.send('<h1>Hello express</h1>');
-    res.redirect('/about');
+app.get('/', (req, res) => {
+    const blogs = [
+        {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+        {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+        {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+        {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+        {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'}
+    ]
+    res.render('index', {title: 'Home',blogs});
+})
+app.get('/about', (req, res) => {
+    res.render('about',{title:"About"});
+})
+
+app.get('/blog/create', (req, res) => {
+    res.render('create',{title:"Create Blog"});
 })
 
 app.use((req, res) => {
-    res.status(404).render('404');
+    res.status(404).render('404',{title:"404"});
 })
